@@ -1,61 +1,57 @@
-# Cuantificación Multimodal de Calidad y Costo en Isométricos de Alta Intensidad: Full Back Lever
+# Cuantificación Multimodal de Calidad y Costo en Isométricos de Alta Intensidad: Back Lever
 
-Zone-Aware Ant Colony Optimization for Neural Network Topology Search.
+Sistema de análisis multimodal para cuantificar calidad técnica y costo fisiológico
+del Back Lever en anillas, combinando visión por computadora con señales fisiológicas
+de alta resolución. Estudio N=1, 12 sesiones, 4 series por sesión, con incremento
+de frecuencia de entrenamiento de 1→3 sesiones/semana.
 
-This repository contains the implementation and experiments for **Z-ANN-Miner**, an extension of the ANN-Miner algorithm (Salama & Abdelbar, ANTS 2014) that introduces typed zone neighbourhoods, secondary zonal pheromone diffusion, and a composite quality function combining Balanced Accuracy with a connection-density penalty. Four algorithms are benchmarked: `ANNMinerOriginal`, `ZANNMiner`, `ThreeLayerBP`, and `RandomMiner`.
-
-Experiments run 6×5-fold stratified cross-validation across eight small UCI classification datasets and three larger datasets, reporting Accuracy, Balanced Accuracy, F1-macro, and MCC, with statistical comparison via Friedman test and Holm post-hoc correction.
-
-## Requirements
+## Requisitos
 
 - Python 3.12
 
-## Setup
+## Configuración
 
-Install [uv](https://docs.astral.sh/uv/getting-started/installation/):
+Instala [uv](https://docs.astral.sh/uv/getting-started/installation/):
 
 ```bash
 # macOS / Linux
 curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Windows (PowerShell)
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-Then sync the environment from the lockfile:
+Sincroniza el entorno desde el lockfile:
 
 ```bash
 uv sync
 ```
 
-This reads `pyproject.toml` and `uv.lock`, creates a local virtual environment (`.venv/`), and installs the exact pinned dependencies. The Python version is pinned in `.python-version` and will be respected automatically.
+## Ejecución
 
-## Running the experiments
-
-Open the main notebook:
+Abre el notebook principal:
 
 ```bash
-uv run jupyter lab Z-ANN-Miner.ipynb
+uv run jupyter lab Multimodal-Backlever-ML.ipynb
 ```
 
-Sections 0–1 library setup and algorithm implementation. Sections 2 run the four algorithms and aggregate results. Section 3 compares the results of the algorithms. Each (seed, fold) result is saved to disk under `results/{dataset}/{seed}_fold_{k}/` and skipped if already present, so runs are resumable.
+Las secciones 0–1 cubren configuración de entorno y carga de datos. La sección 2
+contiene el EDA de video y señales Polar H10. La sección 3 implementa el
+preprocesamiento de video (score técnico por frame) y extracción de features
+fisiológicos. La sección 4 contiene el modelado (GPR, score compuesto, correlaciones).
 
-## Project structure
+## Estructura del proyecto
 
-```
-.
-├── Z-ANN-Miner.ipynb    # Main experiment notebook
-├── pyproject.toml       # Project metadata and dependencies
-├── uv.lock              # Pinned dependency lockfile
-├── .python-version      # Pinned Python version
-├── datasets/            # Contains Ottogroup and segment datasets, since they are not easily downloadable via code
-├── comparison/          # Output directory for comparison plots
-└── results/             # Output directory for experiment results, metrics, statistical tests, and model states
+├── Multimodal-Backlever-ML.ipynb   # Notebook principal
+├── pyproject.toml
+├── uv.lock
+├── .python-version
+├── data/                           # Videos y datos crudos de Polar H10
+├── prep/                           
+└── outputs/                        # Figuras, métricas y resultados del modelado
 
-```
+## Referencias
 
-
-
-## Reference
-
-Salama, K. & Abdelbar, A. M. (2014). A Novel Ant Colony Algorithm for Building Neural Network Topologies. *Swarm Intelligence (ANTS 2014)*, LNCS 8667, 1–12. https://doi.org/10.1007/978-3-319-09952-1_1
+- Arampatzis, A. & Brüggemann, G.-P. (1999). A mathematical high bar model
+  for determination of the optimal gymnastic technique. *Journal of Biomechanics*, 32(12), 1249–1257.
+- Banister, E. W. (1991). Modeling elite athletic performance. In H. Green,
+  J. McDougal & H. Wenger (Eds.), *Physiological Testing of Elite Athletes* (pp. 403–424).
+- FIG (2022). *Code of Points — Artistic Gymnastics for Men*. Fédération
+  Internationale de Gymnastique.
