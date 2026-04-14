@@ -7,7 +7,7 @@ de frecuencia de entrenamiento de 1→3 sesiones/semana.
 
 ## Requisitos
 
-- Python 3.12
+* Python 3.12
 
 ## Configuración
 
@@ -46,12 +46,3 @@ fisiológicos. La sección 4 contiene el modelado (GPR, score compuesto, correla
 ├── data/                           # Videos y datos crudos de Polar H10
 ├── prep/                           
 └── outputs/                        # Figuras, métricas y resultados del modelado
-
-## Referencias
-
-- Arampatzis, A. & Brüggemann, G.-P. (1999). A mathematical high bar model
-  for determination of the optimal gymnastic technique. *Journal of Biomechanics*, 32(12), 1249–1257.
-- Banister, E. W. (1991). Modeling elite athletic performance. In H. Green,
-  J. McDougal & H. Wenger (Eds.), *Physiological Testing of Elite Athletes* (pp. 403–424).
-- FIG (2022). *Code of Points — Artistic Gymnastics for Men*. Fédération
-  Internationale de Gymnastique.
